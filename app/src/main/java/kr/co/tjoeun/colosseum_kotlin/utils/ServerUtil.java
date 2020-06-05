@@ -525,6 +525,55 @@ public class ServerUtil {
         });
     }
 
+    public static void getRequestNotifications(Context context, final JsonResponseHandler handler) {
+
+        OkHttpClient client = new OkHttpClient();
+
+//        GET - 파라미터들이 모두 주소에 같이 적힌다.
+//        요청할때 파라미터를 주소에 모두 적어줘야한다.
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL+"/notification").newBuilder();
+//        urlBuilder.addEncodedQueryParameter("device_token", "임시토큰값");
+//        urlBuilder.addEncodedQueryParameter("os", "Android");
+
+        String completeUrl = urlBuilder.build().toString();
+        Log.d("완성된URL", completeUrl);
+
+
+        Request request = new Request.Builder()
+                .url(completeUrl)
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+
+                    if (handler != null) {
+                        handler.onResponse(json);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d("body", body);
+
+            }
+        });
+    }
+
     public static void getRequestTopicById(Context context, int topicId, final JsonResponseHandler handler) {
 
         OkHttpClient client = new OkHttpClient();
