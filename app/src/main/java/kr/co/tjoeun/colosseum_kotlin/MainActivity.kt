@@ -46,7 +46,7 @@ class MainActivity : BaseActivity() {
                 Log.d("주제목록응답", json.toString())
 
                 val data = json.getJSONObject("data")
-                val topicArr = data.getJSONArray("topic")
+                val topicArr = data.getJSONArray("topics")
 
                 for (i in 0..topicArr.length()-1) {
                     val topicObj = topicArr.getJSONObject(i)
