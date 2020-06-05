@@ -21,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public TextView activityTitleTxt;
     public ImageView notificaionImg;
+    public ImageView logoImg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void setTitle(CharSequence title) {
         super.setTitle(title);
+
+        activityTitleTxt.setVisibility(View.VISIBLE);
+        logoImg.setVisibility(View.GONE);
 
         activityTitleTxt.setText(title);
 
@@ -50,6 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             activityTitleTxt = customActionView.findViewById(R.id.activityTitleTxt);
             notificaionImg = customActionView.findViewById(R.id.notificaionImg);
+            logoImg = customActionView.findViewById(R.id.logoImg);
 
             notificaionImg.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,8 +64,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             });
 
-//            기본 화면 이름을 Colosseum으로 세팅.
-            setTitle("Colosseum");
         }
 
 

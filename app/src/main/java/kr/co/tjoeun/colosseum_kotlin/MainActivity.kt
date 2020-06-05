@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
         topicAdapter = TopicAdapter(mContext, R.layout.topic_list_item, topicList)
         topicListView.adapter = topicAdapter
 
-        title = "진행중인 토론 목록"
+//        title = "진행중인 토론 목록"
 
         Log.d("로그인토큰", ContextUtil.getLoginUserToken(mContext))
 

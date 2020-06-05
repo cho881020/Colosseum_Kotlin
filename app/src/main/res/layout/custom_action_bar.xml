@@ -27,6 +27,7 @@
             android:textColor="@color/black"/>
 
         <ImageView
+            android:id="@+id/logoImg"
             android:layout_width="71dp"
             android:layout_height="20dp"
             android:src="@drawable/nepp_logo" />
