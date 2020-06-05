@@ -248,6 +248,8 @@ public class ViewTopicActivity extends BaseActivity {
     @Override
     public void setValues() {
 
+        setTitle("토론 진행 상황");
+
         topicId = getIntent().getIntExtra("topic_id", -1);
 
         if (topicId == -1) {
