@@ -38,6 +38,8 @@
         android:id="@+id/notificaionImg"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:scaleType="centerCrop"
+        android:padding="6dp"
+        android:src="@drawable/noti_icon"/>
 
 </LinearLayout>
