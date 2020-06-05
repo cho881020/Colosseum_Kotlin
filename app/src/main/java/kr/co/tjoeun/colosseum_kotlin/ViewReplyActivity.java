@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,10 +41,19 @@ public class ViewReplyActivity extends BaseActivity {
             public void onClick(View v) {
 
                 String input = binding.replyContentEdt.getText().toString();
+
+                if (input.length() < 10) {
+                    Toast.makeText(mContext, "답글은 최소 10자 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 ServerUtil.postRequestReReply(mContext, replyId, input, new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
                         Log.d("대댓글응답", json.toString());
+
+
+                        getReplyDataFromServer();
                     }
                 });
 
@@ -106,6 +116,8 @@ public class ViewReplyActivity extends BaseActivity {
 //        대댓글 목록을 뿌릴때 필요한 진영 정보?
         reReplyAdapter = new TopicReReplyAdapter(mContext, R.layout.topic_re_reply_list_item, mReplyData.getReplyList());
         binding.replyListView.setAdapter(reReplyAdapter);
+
+        binding.replyContentEdt.setText("");
     }
 
 
