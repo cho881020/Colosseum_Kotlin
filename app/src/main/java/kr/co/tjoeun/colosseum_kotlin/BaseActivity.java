@@ -58,6 +58,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                     startActivity(myIntent);
                 }
             });
+
+//            기본 화면 이름을 Colosseum으로 세팅.
+            setTitle("Colosseum");
         }
 
 
